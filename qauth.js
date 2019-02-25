@@ -32,11 +32,13 @@ async function getTokenValidated(accessToken) {
 
     var response = (await axios.post(server + '/validateToken', body)).data;
 
-    if (!response.success) {
+    if (response.error) {
         alert('Invalid token');
         qAuthLogOut();
         return;
     }
+
+    console.log(response);
 
     uid = response.result.uid;
 
